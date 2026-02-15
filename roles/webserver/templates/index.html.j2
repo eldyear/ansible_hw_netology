@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>System Info: {{ ansible_facts['hostname'] }}</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            line-height: 1.6; 
+            max-width: 600px; 
+            margin: 40px auto; 
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container { 
+            background: #fff; 
+            padding: 20px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+        }
+        h1 { color: #333; border-bottom: 2px solid {{ '#E95420' if ansible_facts['os_family'] == 'Debian' else '#51a2da' }}; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; border-bottom: 1px id="eee" #eee; padding-bottom: 5px; }
+        .label { font-weight: bold; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ ansible_facts['distribution'] }} Server Info</h1>
+        <ul>
+            <li><span class="label">Hostname:</span> {{ ansible_facts['hostname'] }}</li>
+            <li><span class="label">IP Address:</span> {{ ansible_facts['default_ipv4']['address'] }}</li>
+            <li><span class="label">CPU:</span> {{ ansible_facts['processor_count'] }} cores</li>
+            <li><span class="label">RAM:</span> {{ ansible_facts['memtotal_mb'] }} MB</li>
+            <li><span class="label">HDD Size:</span> {{ ansible_facts['devices']['vda']['size'] if 'vda' in ansible_facts['devices'] else ansible_facts['devices']['sda']['size'] }}</li>
+        </ul>
+    </div>
+</body>
+</html>

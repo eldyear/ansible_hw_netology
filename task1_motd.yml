@@ -1,12 +1,12 @@
 ---
-- name: "Task 1: Change MOTD"
+- name: "Task 1: Change motd"
   hosts: all
   become: yes
-  vars:
-    my_welcome_message: "Welcome to Eldyear's Ansible Lab! Have a productive day."
+  vars_files:
+    - vars.yml
 
   tasks:
-    - name: Update MOTD file
+    - name: Update motd file
       copy:
         content: "{{ my_welcome_message }}\n"
         dest: /etc/motd

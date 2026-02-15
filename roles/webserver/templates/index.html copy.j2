@@ -1,0 +1,11 @@
+<html>
+<body>
+    <h1>You are in {{ ansible_facts['distribution'] }}</h1>
+    <h1>Hostname is {{ ansible_facts['hostname'] }}</h1>
+    <p><strong>CPU:</strong> {{ ansible_facts['processor'][0] }} ({{ ansible_facts['processor_count'] }} cores)</p>
+    <p><strong>RAM:</strong> {{ ansible_facts['memtotal_mb'] }} MB</p>
+    <p><strong>HDD:</strong> {{ ansible_facts['devices']['vda']['size'] if 'vda' in ansible_facts['devices'] else ansible_facts['devices']['sda']['size'] }}</p>
+    <p><strong>IP:</strong> {{ ansible_facts['default_ipv4']['address'] }}</p>
+    <hr>
+</body>
+</html>

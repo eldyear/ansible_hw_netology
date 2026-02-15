@@ -1,0 +1,37 @@
+---
+- name: Install Apache
+  package:
+    name: "{{ apache_package }}"
+    state: present
+
+- name: index.html
+  template:
+    src: index.html.j2
+    dest: "{{ dest_index }}"
+    mode: '0644'
+  notify: Restart Apache
+
+- name: Start and Enable Apache
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes
+
+- name: Open HTTP port on Fedora
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+    immediate: yes
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Check website
+  uri:
+    url: "http://localhost"
+    status_code: 200
+  register: web_check
+
+- name: Show status
+  debug:
+    msg: "Website is UP and running!"
+  when: web_check.status == 200

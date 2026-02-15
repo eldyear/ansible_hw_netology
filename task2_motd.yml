@@ -1,0 +1,10 @@
+---
+- name: "Task 2: Dynamic motd with facts"
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update motd using dynamic facts
+      template:
+        src: motd.j2
+        dest: /etc/motd
