@@ -1,0 +1,5 @@
+*.log
+*.retry
+*.vscode/
+*ansenv/
+*README1.md

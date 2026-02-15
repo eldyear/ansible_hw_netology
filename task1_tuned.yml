@@ -1,0 +1,16 @@
+---
+- name: "Task 1: Install Tuned"
+  hosts: fedora
+  become: yes
+
+  tasks:
+    - name: Install tuned
+      dnf:
+        name: tuned
+        state: present
+
+    - name: Start and Enable tuned
+      systemd:
+        name: tuned
+        state: started
+        enabled: yes
