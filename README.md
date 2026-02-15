@@ -143,7 +143,3 @@ Current active profile: throughput-performance
 ## Ссылки на материалы:
 * **Роль в архиве:** [webserver_role.tar.gz](https://drive.google.com/file/d/10XJ9eelR0wm25G97SPboGmFjOVWeoF4_/view?usp=sharing)
 * **Исходный код:** [GitHub](https://github.com/eldyear/ansible_hw_netology.git)
-
-
-## Итог
-Все задачи выполнены. Плейбуки идемпотентны (при повторном запуске ничего не ломают, статус `changed=0`). Ошибок нет, профит!
